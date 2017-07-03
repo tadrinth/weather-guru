@@ -13,7 +13,13 @@
       <h3><span class="glyphicon glyphicon-info-sign"></span>Your Weather</h3>
       <ul>
 	 	{% for city in cities %}
-		  <li>{{ city.name }}: {{ city.weather }}, {{ city.temperature_in_f }} degrees F</li>
+		  <li>{{ city.name }}: 
+		    <ul>
+			  <li>{{ city.weather }} </li>
+			  <li>{{ city.temperature_in_f }} degrees F</li>
+			  <li>{{city.tomorrow}}</li>
+			</ul>
+		  </li>
 		{% endfor %}
       </ul>
     </div>
