@@ -1,8 +1,8 @@
 # python-getting-started
 
-A barebones Python app, which can easily be deployed to Heroku.
+A simple Python/Django weather app.
 
-This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
+This application was based on the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
 
 ## Running Locally
 
