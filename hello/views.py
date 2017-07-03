@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
 from .models import Greeting
+from .models import City
 
 # Create your views here.
 def hello_index(request):
@@ -20,9 +21,15 @@ def index_teapot(request):
     return HttpResponse('<pre>' + r.text + '</pre>')
 
 def index(request):
-    # return HttpResponse('Hello from Python!')
-    return render(request, 'index.html')
-	
+    context = {}
+    if request.user.is_authenticated():
+        context["cities"] = City.objects.filter(subscribers__id=request.user.id) #request.user.cities
+    else:
+        context["cities"] = [City.objects.get(api_id=4254010)]
+    for city in context["cities"]:
+        city.get_details()
+    return render(request, 'index.html', context)
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
