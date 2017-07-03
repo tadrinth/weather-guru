@@ -1,4 +1,4 @@
-# python-getting-started
+# weather-guru
 
 A simple Python/Django weather app.
 
