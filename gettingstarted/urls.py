@@ -13,6 +13,9 @@ import hello.views
 
 urlpatterns = [
     url(r'^$', hello.views.index, name='index'),
+	url(r'^cities/$', hello.views.cities, name='cities'),
+	url(r'^cities/subscribe/(?P<id>[0-9]*)$', hello.views.subscribe, name='subscribe'),
+	url(r'^cities.unsubscribe/(?P<id>[0-9]*)$', hello.views.unsubscribe, name='unsubscribe'),
     url(r'^db', hello.views.db, name='db'),
 	url(r'^signup/$', hello.views.signup, name='signup'),
 	url(r'^login/$', auth_views.login, name='login'),

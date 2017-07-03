@@ -23,15 +23,15 @@ class City(models.Model):
 	
 	def get_details(self):
 		if(timezone.now() - self.modified_date > datetime.timedelta(minutes=10) or True):
-			result = json.loads(self.pull_from_api())
-			if "weather" in result:
-				self.weather = ", ".join(map(lambda x: x["main"], result["weather"]))
-			if "name" in result:
-				self.name = result["name"]
-			if "main" in result:
-				self.temperature = round(float(result["main"]["temp"]))
 			try:
-				self.save()
+				result = json.loads(self.pull_from_api())
+				if "weather" in result:
+					self.weather = ", ".join(map(lambda x: x["main"], result["weather"]))
+				if "name" in result:
+					self.name = result["name"]
+				if "main" in result:
+					self.temperature = round(float(result["main"]["temp"]))
+					self.save()
 			except:
 				logger = logging.getLogger(__name__)
 				logger.error("Failed to read from API")

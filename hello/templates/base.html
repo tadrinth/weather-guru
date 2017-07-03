@@ -59,7 +59,10 @@
     <ul class="nav navbar-nav navbar-right">
       {% if user.is_authenticated %}
 		<li class="navbar-right">
-			<a href="/logout">Logout</a>
+		  <a href="/logout">Logout</a>
+		</li>
+		<li class="navbar-right">
+		  <a href="/cities">Manage Cities</a>
 		</li>
 	  {% else %}
 	  <li class="navbar-right">

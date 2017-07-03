@@ -30,6 +30,24 @@ def index(request):
         city.get_details()
     return render(request, 'index.html', context)
 
+def cities(request):
+    context = {}
+    context["cities"] = City.objects.filter(subscribers__id=request.user.id)
+    context["other_cities"] = City.objects.exclude(subscribers__id=request.user.id)
+    return render(request, 'cities.html', context)
+
+def subscribe(request, id):
+	city = City.objects.get(api_id=int(id))
+	city.subscribers.add(request.user)
+	city.save()
+	return redirect('/cities')
+	
+def unsubscribe(request, id):
+	city = City.objects.get(api_id=int(id))
+	city.subscribers.remove(request.user)
+	city.save()
+	return redirect('/cities')
+	
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
